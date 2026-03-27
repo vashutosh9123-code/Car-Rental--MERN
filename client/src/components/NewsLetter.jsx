@@ -13,35 +13,40 @@ const NewsLetter = () => {
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true }}
       transition={{ duration: 0.8 }}
-      className="flex flex-col items-center justify-center text-center space-y-4 max-md:px-4 my-24 mb-48"
+      className="flex flex-col items-center justify-center text-center px-6 md:px-16 lg:px-24 xl:px-32 py-24 mb-32 bg-surface-light rounded-[3rem] max-w-7xl mx-auto border border-borderColor/50"
     >
-            <h1 className="md:text-4xl text-2xl font-semibold">Never Miss a Deal!</h1>
-            <p className="md:text-lg text-gray-500/70 pb-8">
-                Subscribe to get the latest offers, new arrivals, and exclusive discounts
-            </p>
-            <motion.form 
-                initial={{ opacity: 0, scale: 0.95 }}
-                whileInView={{ opacity: 1, scale: 1 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.5, delay: 0.2 }}
-                className="flex items-center justify-between max-w-2xl w-full h-14 bg-white rounded-full shadow-xl shadow-primary/5 border border-gray-100 overflow-hidden"
-            >
-                <input
-                    className="border border-gray-300 rounded-md h-full border-r-0 outline-none w-full rounded-r-none px-3 text-gray-500"
-                    type="text"
-                    placeholder="Enter your email id"
-                    required
-                />
-                <motion.button 
-                    whileHover={{ x: 5 }}
-                    whileTap={{ scale: 0.95 }}
-                    type="submit" 
-                    className="h-12 mr-1 px-10 text-white bg-primary hover:bg-primary-dull transition-all cursor-pointer rounded-full font-semibold whitespace-nowrap"
-                >
-                    Subscribe
-                </motion.button>
-            </motion.form>
-        </motion.div>
+      <div className="max-w-2xl">
+        <h2 className="text-3xl md:text-5xl font-bold text-text-primary mb-4">Never Miss a Deal!</h2>
+        <p className="text-text-secondary text-lg mb-10">
+          Subscribe to our newsletter for exclusive offers, luxury arrivals, and professional travel tips directly to your inbox.
+        </p>
+        <motion.form 
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.5, delay: 0.2 }}
+          className="flex flex-col sm:flex-row items-center gap-4 w-full"
+        >
+          <div className="relative flex-1 w-full group">
+            <input
+              className="w-full h-14 bg-white border border-borderColor rounded-2xl px-6 text-text-primary outline-none focus:border-primary focus:ring-4 focus:ring-primary/10 transition-all placeholder:text-text-muted"
+              type="email"
+              placeholder="your@email.com"
+              required
+            />
+          </div>
+          <motion.button 
+            whileHover={{ scale: 1.02 }}
+            whileTap={{ scale: 0.98 }}
+            type="submit" 
+            className="h-14 px-10 text-white bg-primary hover:bg-primary-dull transition-all cursor-pointer rounded-2xl font-bold whitespace-nowrap shadow-lg shadow-primary/20"
+          >
+            Join Now
+          </motion.button>
+        </motion.form>
+      </div>
+    </motion.div>
+
   );
 };
 

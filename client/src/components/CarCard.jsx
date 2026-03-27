@@ -16,57 +16,63 @@ const CarCard = ({ car, index = 0, variant = "default" }) => {
         navigate(`/car-details/${car._id}`);
         window.scrollTo(0, 0);
       }}
-      className="group rounded-xl overflow-hidden shadow-lg hover:-translate-y-2 hover:shadow-2xl transition-all duration-500 cursor-pointer bg-white"
+      className="group rounded-3xl overflow-hidden border border-borderColor bg-white hover:shadow-[0_20px_50px_rgba(0,0,0,0.1)] transition-all duration-500 cursor-pointer"
     >
       <div className="relative h-64 overflow-hidden">
         <img
           src={car.image}
           className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
+          alt={`${car.brand} ${car.model}`}
         />
 
         {car.isAvailable && (
-          <p className="absolute top-4 left-4 bg-primary/90 text-white text-xs px-2.5 py-1 rounded-full backdrop-blur-sm">
-            Available Now
-          </p>
+          <div className="absolute top-4 left-4 bg-primary/90 text-white text-[10px] font-bold uppercase tracking-wider px-3 py-1.5 rounded-full backdrop-blur-md shadow-lg">
+            Available
+          </div>
         )}
 
-        <div className="absolute bottom-4 right-4 bg-black/80 backdrop-blur-sm text-white px-3 py-2 rounded-lg">
-          <span className="font-semibold">
-            {currency}
-            {car.pricePerDay}
+        <div className="absolute bottom-4 right-4 bg-white/95 backdrop-blur-md text-text-primary px-4 py-2 rounded-2xl shadow-xl flex items-baseline gap-1">
+          <span className="font-bold text-lg">
+            {currency}{car.pricePerDay}
           </span>
-          <span className="text-sm text-white/80">/day</span>
+          <span className="text-xs text-text-secondary font-medium">/day</span>
         </div>
       </div>
 
-      <div className="p-4 sm:p-5">
-        <div className="flex justify-between items-start mb-2">
-          <div>
-            <h3 className="text-lg font-medium group-hover:text-primary transition-colors">
-              {car.brand} {car.model}
-            </h3>
-            <p className="text-gray-500 text-sm">
-              {car.category} . {car.year}
-            </p>
-          </div>
+      <div className="p-6">
+        <div className="mb-4">
+          <h3 className="text-xl font-bold text-text-primary group-hover:text-primary transition-colors duration-300">
+            {car.brand} {car.model}
+          </h3>
+          <p className="text-text-secondary text-sm font-medium mt-1">
+            {car.category} • {car.year}
+          </p>
         </div>
 
-        <div className="mt-4 grid grid-cols-2 gap-y-2 text-gray-600 border-t border-gray-100 pt-4">
-          <div className="flex items-center text-sm text-gray-500">
-            <img src={assets.users_icon} className="h-4 mr-2"></img>
-            <span>{car.seating_capacity} Seats</span>
+        <div className="grid grid-cols-2 gap-4 border-t border-borderColor pt-5">
+          <div className="flex items-center gap-2.5">
+            <div className="w-8 h-8 rounded-lg bg-surface-light flex items-center justify-center">
+              <img src={assets.users_icon} className="h-4 opacity-70" alt="seats" />
+            </div>
+            <span className="text-xs font-semibold text-text-secondary">{car.seating_capacity} Seats</span>
           </div>
-          <div className="flex items-center text-sm text-gray-500">
-            <img src={assets.fuel_icon} className="h-4 mr-2"></img>
-            <span>{car.fuel_type} </span>
+          <div className="flex items-center gap-2.5">
+            <div className="w-8 h-8 rounded-lg bg-surface-light flex items-center justify-center">
+              <img src={assets.fuel_icon} className="h-4 opacity-70" alt="fuel" />
+            </div>
+            <span className="text-xs font-semibold text-text-secondary">{car.fuel_type}</span>
           </div>
-          <div className="flex items-center text-sm text-gray-500">
-            <img src={assets.car_icon} className="h-4 mr-2"></img>
-            <span>{car.transmission} </span>
+          <div className="flex items-center gap-2.5">
+            <div className="w-8 h-8 rounded-lg bg-surface-light flex items-center justify-center">
+              <img src={assets.car_icon} className="h-4 opacity-70" alt="transmission" />
+            </div>
+            <span className="text-xs font-semibold text-text-secondary">{car.transmission}</span>
           </div>
-          <div className="flex items-center text-sm text-gray-500">
-            <img src={assets.location_icon} className="h-4 mr-2"></img>
-            <span>{car.location} </span>
+          <div className="flex items-center gap-2.5">
+            <div className="w-8 h-8 rounded-lg bg-surface-light flex items-center justify-center">
+              <img src={assets.location_icon} className="h-4 opacity-70" alt="location" />
+            </div>
+            <span className="text-xs font-semibold text-text-secondary text-nowrap overflow-hidden text-ellipsis">{car.location}</span>
           </div>
         </div>
       </div>

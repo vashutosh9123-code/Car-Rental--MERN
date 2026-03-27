@@ -7,10 +7,14 @@
 
 }
 
-@theme{
-    --color-primary:#2563EB;
-     --color-primary-dull:#2563EB;
-     --color-light:#F1F5F9;
-      --color-borderColor:#c4c7d2;
-
-}
+@theme {
+  --color-primary: #2563eb;
+  --color-primary-light: #60a5fa;
+  --color-primary-dull: #1d4ed8;
+  --color-light: #f1f5f9;
+  --color-borderColor: #e2e8f0;
+  --color-surface-light: #f8fafc;
+  --color-text-primary: #0f172a;
+  --color-text-secondary: #475569;
+  --color-text-muted: #94a3b8;
+}

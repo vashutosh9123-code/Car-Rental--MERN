@@ -8,12 +8,9 @@ const Title = ({ title, subTitle, align }) => {
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true }}
       transition={{ duration: 0.6, delay: 0.2 }}
-      className={`flex flex-col justify-center items-center text-center ${
-        align === "left" && "md:items-start md:text-left"
-      }`}
-    >
-      <h1 className="font-semibold text-4xl md:text-[40px]">{title}</h1>
-      <p className="text-sm md:text-base text-gray-500/90 mt-2 max-w-156">{subTitle}</p>
+      >
+      <h1 className="font-bold text-3xl md:text-5xl text-text-primary leading-tight">{title}</h1>
+      <p className="text-text-secondary md:text-lg mt-4 max-w-2xl leading-relaxed">{subTitle}</p>
     </motion.div>
   );
 };

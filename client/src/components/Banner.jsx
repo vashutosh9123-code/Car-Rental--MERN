@@ -13,7 +13,7 @@ const Banner = () => {
       whileInView={{ opacity: 1, scale: 1 }}
       viewport={{ once: true }}
       transition={{ duration: 0.8 }}
-      className="flex flex-col md:flex-row md:items-center items-center justify-between px-8 md:px-16 py-12 bg-gradient-to-r from-primary via-blue-500 to-blue-400 max-w-7xl mx-auto rounded-3xl overflow-hidden shadow-2xl my-24"
+      className="flex flex-col md:flex-row md:items-center items-center justify-between px-6 md:px-16 lg:px-24 xl:px-32 py-16 bg-gradient-to-r from-primary via-blue-600 to-blue-500 max-w-7xl mx-auto rounded-[2rem] overflow-hidden shadow-2xl my-24 border border-white/10"
     >
       <motion.div 
         initial={{ opacity: 0, x: -30 }}
