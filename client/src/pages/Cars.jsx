@@ -15,30 +15,16 @@ function Cars() {
   const { cars, axios } = useAppContext();
   const [input, setInput] = useState("");
   const [filteredCars, setFilteredCars] = useState([]);
+  const [availableFromSearch, setAvailableFromSearch] = useState(null);
 
   const isSearchData =
     pickupLocation.trim() !== "" && pickupDate.trim() !== "" && returnDate.trim() !== "";
 
-  // Apply local input filter (brand, model, category, etc.)
-  const applyFilter = () => {
-    if (!input) {
-      setFilteredCars(cars);
-      return;
-    }
-    const filtered = cars.filter((car) => {
-      return (
-        car.brand.toLowerCase().includes(input.toLowerCase()) ||
-        car.model.toLowerCase().includes(input.toLowerCase()) ||
-        car.category.toLowerCase().includes(input.toLowerCase()) ||
-        car.transmission.toLowerCase().includes(input.toLowerCase()) ||
-        car.location.toLowerCase().includes(input.toLowerCase())
-      );
-    });
-    setFilteredCars(filtered);
-  };
+  const [isFetching, setIsFetching] = useState(isSearchData);
 
   // Fetch cars availability from backend
   const searchCarAvailability = async () => {
+    setIsFetching(true);
     try {
       const { data } = await axios.post("/api/bookings/check-availability", {
         location: pickupLocation,
@@ -47,7 +33,7 @@ function Cars() {
       });
 
       if (data.success) {
-        setFilteredCars(data.availableCars);
+        setAvailableFromSearch(data.availableCars);
 
         if (data.availableCars.length === 0) {
           toast("No cars available");
@@ -57,6 +43,8 @@ function Cars() {
       }
     } catch (error) {
       toast.error(error.message);
+    } finally {
+      setIsFetching(false);
     }
   };
 
@@ -65,14 +53,36 @@ function Cars() {
     if (isSearchData) {
       searchCarAvailability();
     } else {
-      setFilteredCars(cars); // Show all cars if no search data
+      setAvailableFromSearch(null); // Show all cars if no search data
+      setIsFetching(false);
     }
-  }, [pickupLocation, pickupDate, returnDate, cars]);
+  }, [pickupLocation, pickupDate, returnDate]);
 
-  // When user types in search input
+  // Unified filter logic
   useEffect(() => {
-    applyFilter();
-  }, [input, cars]);
+    if (isSearchData && isFetching) {
+      setFilteredCars([]); // Prevent showing all cars while fetching
+      return;
+    }
+
+    const baseCars = availableFromSearch !== null ? availableFromSearch : cars;
+
+    if (!input) {
+      setFilteredCars(baseCars);
+      return;
+    }
+
+    const filtered = baseCars.filter((car) => {
+      return (
+        car.brand.toLowerCase().includes(input.toLowerCase()) ||
+        car.model.toLowerCase().includes(input.toLowerCase()) ||
+        car.category.toLowerCase().includes(input.toLowerCase()) ||
+        car.transmission.toLowerCase().includes(input.toLowerCase()) ||
+        car.location.toLowerCase().includes(input.toLowerCase())
+      );
+    });
+    setFilteredCars(filtered);
+  }, [input, cars, availableFromSearch, isFetching, isSearchData]);
 
   return (
     <div>
