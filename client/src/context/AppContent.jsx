@@ -5,6 +5,18 @@ import { useNavigate } from "react-router-dom";
 
 axios.defaults.baseURL = import.meta.env.VITE_BASE_URL;
 
+axios.interceptors.response.use(
+  (response) => response,
+  (error) => {
+    if (error.response && (error.response.status === 404 || error.response.status === 401)) {
+      error.message = "Not Authorized";
+    } else if (error.response?.data?.message) {
+      error.message = error.response.data.message;
+    }
+    return Promise.reject(error);
+  }
+);
+
 export const AppContext = createContext();
 
 export const AppProvider = ({ children }) => {
