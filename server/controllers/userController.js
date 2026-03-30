@@ -36,8 +36,6 @@ export const registerUser=async(req,res)=>{
 }
 
 
-// Login User
-
 export const loginUser=async(req,res)=>{
     try {
         const {email,password}=req.body
@@ -70,7 +68,7 @@ export const getUserData = async(req,res)=>{
     }
 }
 
-//get all cars for frontend
+
 export const getCars=async(req,res)=>{
     try {
         const cars=await Car.find({isAvailable:true}) 

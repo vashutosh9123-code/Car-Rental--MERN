@@ -31,7 +31,7 @@ export const addCar = async (req, res) => {
       return res.status(400).json({ success: false, message: "Invalid car data format" });
     }
 
-    // Upload to ImageKit
+    
     const uploadResponse = await imageKit.files.upload({
       file: await toFile(req.file.buffer, req.file.originalname),
       fileName: req.file.originalname,
@@ -95,7 +95,7 @@ export const deleteCar = async (req, res) => {
 
     car.owner = null;
     car.isAvailable = false;
-    await car.save(); // ✅ FIXED
+    await car.save(); 
 
     res.json({ success: true, message: "Car removed" });
   } catch (error) {
@@ -115,7 +115,6 @@ export const getDashboardData = async (req, res) => {
       .populate("car")
       .sort({ createdAt: -1 });
 
-    // ✅ FIXED (.find → .filter)
     const pendingBookings = bookings.filter(
       (b) => b.status === "pending"
     );
@@ -124,7 +123,6 @@ export const getDashboardData = async (req, res) => {
       (b) => b.status === "confirmed"
     );
 
-    // ✅ FIXED (use confirmedBookings)
     const monthlyRevenue = confirmedBookings.reduce(
       (acc, booking) => acc + booking.price,
       0

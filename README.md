@@ -12,7 +12,7 @@ A full-stack Car Rental application built with the MERN (MongoDB, Express, React
 - **Modern UI**: Clean, responsive, and animated user interface built with Tailwind CSS and Framer Motion.
 - **Global Error Handling**: Integrated Axios interceptors to gracefully handle authentication and API errors.
 
-## Tech Stack
+## Tech stack
 
 ### Frontend
 - **React** (via Vite)

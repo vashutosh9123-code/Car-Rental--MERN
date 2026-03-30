@@ -19,7 +19,7 @@ const Hero = () => {
   return (
     <div className="relative min-h-screen flex flex-col items-center justify-center gap-10 text-center py-24 px-6 overflow-hidden bg-light">
 
-      {/* Animated background blobs */}
+      
       <div className="absolute inset-0 overflow-hidden pointer-events-none">
         <div className="absolute top-[-10%] left-[-5%] w-[500px] h-[500px] bg-gradient-to-br from-primary/20 to-blue-400/10 rounded-full blur-[100px] animate-float" />
         <div className="absolute bottom-[-10%] right-[-5%] w-[400px] h-[400px] bg-gradient-to-tl from-blue-300/15 to-primary/10 rounded-full blur-[100px] animate-float" style={{ animationDelay: "2s" }} />
